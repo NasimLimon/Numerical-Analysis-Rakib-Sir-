@@ -1,77 +1,54 @@
-#include <iostream>
-#include <cmath>
-#include <iomanip>
-
+//                                            IN THE NAME OF SUPREME & MERCIFUL GOD
+//                                                Bismillahir Rahmanir Rahim
+#include <bits/stdc++.h>
 using namespace std;
+typedef long long ll;
+#define endl '\n'
 
-double f(double x)
-{
-    return x * x * x - x - 2;
-}
-
-double bisection(double a, double b, double tol, int max_iter)
-{
-    if (f(a) * f(b) >= 0)
-    {
-        cout << "Bisection method fails: f(a) and f(b) must have opposite signs." << endl;
-        return NAN;
-    }
-
-    double c = a;
-    int iter = 0;
-
-    cout << "Iteration\t a\t\t b\t\t c\t\t f(c)" << endl;
-    cout << fixed << setprecision(6);
-
-    while ((b - a) >= tol && iter < max_iter)
-    {
-        c = (a + b) / 2;
-
-        cout << iter << "\t\t" << a << "\t" << b << "\t" << c << "\t" << f(c) << endl;
-
-        if (f(c) == 0.0)
-        {
-            break;
-        }
-        else if (f(c) * f(a) < 0)
-        {
-            b = c;
-        }
-        else
-        {
-            a = c;
-        }
-
-        iter++;
-    }
-
-    cout << "\nFinal approximation: " << c << endl;
-    cout << "Number of iterations: " << iter << endl;
-
-    return c;
-}
+#define Limon()                   \
+    ios_base::sync_with_stdio(0); \
+    cin.tie(0);                   \
+    cout.tie(0);
 
 int main()
 {
-    double a, b, tolerance;
-    int max_iterations;
-
-    cout << "Enter interval [a, b]: ";
-    cin >> a >> b;
-
-    cout << "Enter tolerance: ";
-    cin >> tolerance;
-
-    cout << "Enter maximum number of iterations: ";
-    cin >> max_iterations;
-
-    double root = bisection(a, b, tolerance, max_iterations);
-
-    if (!isnan(root))
+    Limon();
+    ll n, m;
+    cin >> n >> m;
+    vector<vector<ll>> v1(n + 2);
+    vector<vector<ll>> v2(m + 2);
+    unordered_set<ll> s1;
+    for (ll i = 1; i <= n; i++)
     {
-        cout << "Approximate root: " << root << endl;
-        cout << "f(root) = " << f(root) << endl;
+        ll xx;
+        cin >> xx;
+        auto x = lower_bound(v1.begin(), v1.end(), xx);
+        if (x == v1.end())
+        {
+            v1[i].push_back(xx);
+        }
+        else
+        {
+            v1[x - v1.begin()].push_back(xx);
+        }
     }
-
-    return 0;
+    for (ll i = 1; i <= m; i++)
+    {
+        ll xxx;
+        cin >> xxx;
+        auto x = lower_bound(v1.begin(), v1.end(), xxx);
+        if (x == v2.end())
+        {
+            v2[i].push_back(xxx);
+        }
+        else
+        {
+            v2[x - v1.begin()].push_back(xxx);
+        }
+    }
+    for (ll i = 0; i < v1.size(); i++)
+    {
+        for(ll j=i)
+    }
+   
 }
